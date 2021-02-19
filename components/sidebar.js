@@ -20,11 +20,11 @@ const Sidebar = (props) =>{
             </div>
             {elements.map(element =>{
                 return(
-                    <div className={styles.SideBarLink}>
-                        <Link href={element.path} className={`${element.selected ? styles.activeLink : ''}`}>
+                    <Link href={element.path} className={styles.SideBarLink}>
+                        <div className={`${styles.SideBarContainer} ${element.selected ? styles.activeLink : ''}`}>
                             {element.label}
-                        </Link>
-                    </div>
+                        </div>
+                    </Link>
                 )
             })}
         </div>

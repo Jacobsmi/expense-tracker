@@ -16,10 +16,22 @@
     border-bottom: 1px solid black;
 }
 
-.SideBarLink {
-    margin-left: 0.8vw;
+.SideBarContainer {
+    padding-left: 0.8vw;
+    width: 100%;
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
 }
 
-.activeLink{
+.SideBarLink {
+    width: 100%;
+    user-select: none;
+}
+
+.activeLink {
     background-color: gray;
+    border-radius: 0 50px 50px 0;
 }
