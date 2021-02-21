@@ -2,7 +2,7 @@ import Sidebar from '../components/sidebar'
 import styles from '../styles/AddExpense.module.css'
 
 const AddExpense = () =>{
-    const submitClick = () =>{
+    const submitClick = async () =>{
         // Reset Errors
         document.getElementById('nameError').innerHTML = '';
         document.getElementById('amountError').innerHTML = '';
@@ -17,7 +17,7 @@ const AddExpense = () =>{
 
         // If all values are good
         if (nameRegex && amountRegex){
-            fetch("/api/addexpense",{
+            const result = await fetch("/api/addexpense",{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -26,7 +26,13 @@ const AddExpense = () =>{
                     name: name,
                     amount: amount
                 })
-            })
+            });
+
+            const resp_data = await result.json();
+            if (resp_data.status == 'success'){
+                document.getElementById('status').innerHTML = 'Added Successfully';
+                setTimeout(() => {  document.getElementById('status').innerHTML = ''; }, 2000);
+            }
         }
         // If name is not valid display error
         if(!nameRegex){
@@ -47,6 +53,7 @@ const AddExpense = () =>{
                 <label className={styles.FormLabel}>Amount:</label><input className={styles.FormInput} id='AmountInput'></input><br />
                 <div id='amountError'></div>
                 <button id={styles.FormButton} onClick={submitClick}>Add</button>
+                <div id='status'></div>
             </div>
         </div>
     )
