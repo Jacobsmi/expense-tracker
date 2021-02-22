@@ -31,8 +31,12 @@ const AddExpense = () =>{
             const resp_data = await result.json();
             if (resp_data.status == 'success'){
                 document.getElementById('status').innerHTML = 'Added Successfully';
-                setTimeout(() => {  document.getElementById('status').innerHTML = ''; }, 2000);
+            }else if(resp_data.status === 'conn-error'){
+                document.getElementById('status').innerHTML = 'Error connecting to DB';
+            }else if(resp_data.status === 'insert-error'){
+                document.getElementById('status').innerHTML = 'Error inserting the data';
             }
+            setTimeout(() => {  document.getElementById('status').innerHTML = ''; }, 2000);
         }
         // If name is not valid display error
         if(!nameRegex){
