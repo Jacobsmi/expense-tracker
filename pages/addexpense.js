@@ -36,7 +36,12 @@ const AddExpense = () =>{
             }else if(resp_data.status === 'insert-error'){
                 document.getElementById('status').innerHTML = 'Error inserting the data';
             }
-            setTimeout(() => {  document.getElementById('status').innerHTML = ''; }, 2000);
+            setTimeout(() => {
+              const status = document.getElementById('status');
+              if (status !== null){
+                status.innerHTML = '';
+              }
+            }, 2000);
         }
         // If name is not valid display error
         if(!nameRegex){
